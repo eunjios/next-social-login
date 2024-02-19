@@ -1,3 +1,37 @@
 {
-  "extends": "next/core-web-vitals"
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint", "prettier"],
+  "rules": {
+    "react/no-unknown-property": ["error", { "ignore": ["css"] }],
+    "react/react-in-jsx-scope": "off", // import React from 'react' OFF
+    "@typescript-eslint/no-unused-vars": "error", // 안 쓰는 변수 사용시 ERROR
+    "@typescript-eslint/no-explicit-any": "error" // any 사용시 ERROR
+  },
+  "globals": {
+    "React": "writable"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
 }
