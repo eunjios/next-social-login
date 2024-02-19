@@ -1,0 +1,52 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding-top: 40px;
+}
+
+.thumbnail {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  border-radius: 100%;
+  overflow: hidden;
+}
+
+.thumbnail img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  width: auto;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.thumbnail img.portrait {
+  width: 100%;
+  height: auto;
+}
+
+.name {
+  font-size: 28px;
+  line-height: 48px;
+  font-weight: 700;
+}
+
+.actions button {
+  border-radius: 24px;
+  padding: 4px 8px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.logout {
+  border: 1.6px solid transparent;
+  background: #f4f4f4;
+  color: #000;
+}
