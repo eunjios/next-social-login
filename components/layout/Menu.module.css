@@ -1,0 +1,21 @@
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font: 500 14px Noto Sans KR; /* button style */
+  cursor: pointer;
+  padding: 0 12px;
+  background: #fff;
+  border: 1.2px solid #fff;
+  border-radius: 32px;
+}
+
+.btn:hover {
+  background: #f4f4f4;
+  border: 1.2px solid #f4f4f4;
+}
+
+.loading {
+  cursor: not-allowed;
+  color: #aeaeae;
+}
