@@ -1,40 +1,57 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Social Login (NextAuth.js + MongoDB)
+
+> 네이버, 카카오, 구글 계정으로 소셜 로그인 구현하기
+
+## About
+
+### 주요 기능
+
+1. 네이버, 카카오, 구글 계정으로 **소셜 로그인**
+2. 처음 방문한 유저는 DB에 저장
+3. 로그인 providers가 제공하지 않는 데이터도 DB에 저장 (상태 메시지, 이메일 정보)
+
+### 기술
+
+- Next.js (Pages Router)
+- React
+- NextAuth.js
+- MongoDB
+- Module CSS
 
 ## Getting Started
 
-First, run the development server:
+1. Repository 클론
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/eunjios/next-social-login.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Dependencies 설치
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```bash
+yarn install
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+3. 애플리케이션 실행
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```bash
+yarn dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 환경 변수
 
-## Learn More
+The following environment variables are used by the application:
 
-To learn more about Next.js, take a look at the following resources:
+| Variable               | Description                               |
+| ---------------------- | ----------------------------------------- |
+| `NEXTAUTH_URL`         | Base URL of your Next.js application      |
+| `NEXTAUTH_SECRET`      | Strong secret key used for signing tokens |
+| `MONGODB_URI`          | MongoDB connection string                 |
+| `GOOGLE_CLIENT_ID`     | Google Client ID                          |
+| `GOOGLE_CLIENT_SECRET` | Google Client Secret                      |
+| `KAKAO_CLIENT_ID`      | Kakao Client ID                           |
+| `KAKAO_CLIENT_SECRET`  | Kakao Client Secret                       |
+| `NAVER_CLIENT_ID`      | Naver Client ID                           |
+| `NAVER_CLIENT_SECRET`  | Naver Client Secret                       |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+To set these environment variables, create a `.env.local` file in the root directory of the project and add the environment variables.
