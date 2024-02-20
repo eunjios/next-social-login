@@ -4,6 +4,9 @@
 
 ## About
 
+https://github.com/eunjios/next-social-login/assets/77034159/0bb22298-f380-4336-85ce-db8ddffcba45
+
+
 ### 주요 기능
 
 1. 네이버, 카카오, 구글 계정으로 **소셜 로그인**
