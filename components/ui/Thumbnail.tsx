@@ -5,6 +5,7 @@ interface Props {
   size: string | number;
   src?: string | null;
 }
+
 export default function Thumbnail({ size, src }: Props) {
   return (
     <div className={styles.thumbnail} style={{ width: size, height: size }}>

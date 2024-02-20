@@ -1,0 +1,62 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.name {
+  font-size: 28px;
+  line-height: 48px;
+  font-weight: 700;
+}
+
+.form {
+  width: 400px;
+  max-width: 100%;
+}
+
+.section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 32px;
+}
+
+.section label {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.section input {
+  border: none;
+  outline: none;
+  border-bottom: 1.6px solid #aeaeae;
+  color: #666;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 32px;
+}
+
+.section p {
+  font-size: 12px;
+  color: #aeaeae;
+}
+
+.actions {
+  width: 100%;
+  display: flex;
+  margin: 48px 0;
+}
+
+.actions button {
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius: 32px;
+  background: #000;
+  color: #fff;
+  font-size: 20px;
+  padding: 12px;
+  cursor: pointer;
+}

@@ -6,10 +6,6 @@
   overflow: hidden;
 }
 
-.thumbnail:hover {
-  opacity: 0.9;
-}
-
 .thumbnail img {
   position: absolute;
   left: 50%;

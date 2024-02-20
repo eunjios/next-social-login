@@ -1,8 +1,15 @@
 import { DefaultSession } from 'next-auth';
 
-// acceessToken 프로퍼티 타입을 추가함
 declare module 'next-auth' {
   interface Session extends DefaultSession {
-    accessToken?: string;
+    user?: {
+      id?: string | null;
+      message?: string | null;
+      name?: string | null;
+      email?: string | null;
+      image?: string | null;
+    };
+    accessToken?: string | null;
+    provider?: string | null;
   }
 }

@@ -1,9 +1,11 @@
-import Image from 'next/image';
+import type { Session } from 'next-auth';
 import { useSession } from 'next-auth/react';
 import { BarLoader } from 'react-spinners';
+import Thumbnail from '../ui/Thumbnail';
 import styles from './User.module.css';
+import Link from 'next/link';
 
-export default function User() {
+export default function User({ data }: { data: Session }) {
   const { data: session, status } = useSession();
 
   // 소셜 로그인 후 초기 로딩
@@ -23,21 +25,13 @@ export default function User() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.thumbnail}>
-        <Image
-          src={session.user?.image ?? ''}
-          alt="프로필"
-          width={0}
-          height={0}
-          sizes="100vw"
-          style={{ width: '100%', height: 'auto' }}
-        />
-      </div>
-      <div className={styles.name}>{session.user?.name}</div>
+      <Thumbnail src={data.user?.image} size={160} />
+      <div className={styles.name}>{data.user?.name}</div>
+      <p className={styles.msg}>{data.user?.message}</p>
       <div className={styles.actions}>
-        <button className={`${styles.logout}`} onClick={() => {}}>
+        <Link className={styles.edit} href="/profile">
           프로필 편집
-        </button>
+        </Link>
       </div>
     </div>
   );
