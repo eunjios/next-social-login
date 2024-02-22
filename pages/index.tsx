@@ -1,10 +1,10 @@
 import Head from 'next/head';
 import User from '@/components/user/User';
 import { GetServerSideProps } from 'next';
-import { Session, getServerSession } from 'next-auth';
+import { getServerSession } from 'next-auth';
 import { authOptions } from './api/auth/[...nextauth]';
 
-export default function Home({ data }: { data: Session }) {
+export default function Home() {
   return (
     <>
       <Head>
@@ -13,7 +13,7 @@ export default function Home({ data }: { data: Session }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <User data={data} />
+      <User />
     </>
   );
 }

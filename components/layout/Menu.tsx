@@ -6,8 +6,8 @@ import Thumbnail from '../ui/Thumbnail';
 import styles from './Menu.module.css';
 
 export default function Menu() {
-  const { data: session } = useSession();
   const router = useRouter();
+  const { data: session } = useSession();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   const btnStyle = `${styles.btn} ${isLoggingOut && styles.loading}`; // 로그아웃 중일 때 스타일 변경

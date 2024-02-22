@@ -1,4 +1,4 @@
-import nextAuth, { NextAuthOptions } from 'next-auth';
+import NextAuth, { NextAuthOptions } from 'next-auth';
 import NaverProvider from 'next-auth/providers/naver';
 import KakaoProvider from 'next-auth/providers/kakao';
 import GoogleProvider from 'next-auth/providers/google';
@@ -25,11 +25,7 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async signIn({ user, account }) {
-      if (
-        account?.provider === 'naver' ||
-        account?.provider === 'kakao' ||
-        account?.provider === 'google'
-      ) {
+      if (account && account?.provider in ['naver', 'kakao', 'google']) {
         const existingUser = await getUser(user.id);
         if (!existingUser) {
           await insertUser(user); // sign up
@@ -39,37 +35,18 @@ export const authOptions: NextAuthOptions = {
     },
     async jwt({ token, account, user }) {
       if (account && account.access_token) {
-        token.accessToken = account.access_token;
-        token.provider = account.provider;
         token.id = user.id;
       }
       return token;
     },
     async session({ token, session }) {
-      if (token && token.accessToken) {
-        // set user
-        session.user = {
-          id: token.sub,
-          message: (token.message as string) ?? null,
-          image: token.picture ?? '',
-          email: token.email ?? '',
-          name: token.name ?? '',
-        };
-        session.accessToken = token.accessToken as string;
-        session.provider = (token.provider as string) ?? '';
-
-        // set message, email for existing user
-        const existingUser = await getUser(token.sub ?? '');
-        if (existingUser) {
-          if (session.user) {
-            session.user.message = existingUser.message ?? '';
-            session.user.email = existingUser.email ?? '';
-          }
-        }
-      }
+      session.user = {
+        id: token.sub ?? '',
+        image: token.picture ?? '',
+      };
       return session;
     },
   },
 };
 
-export default nextAuth(authOptions);
+export default NextAuth(authOptions);
