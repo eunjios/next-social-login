@@ -20,6 +20,7 @@ export default function Thumbnail({ size, src }: Props) {
         sizes="100vw"
         style={{ width: '100%', height: 'auto' }}
         priority
+        unoptimized={true}
       />
     </div>
   );
