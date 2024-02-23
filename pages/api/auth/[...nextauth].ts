@@ -25,10 +25,21 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async signIn({ user, account }) {
-      if (account && account?.provider in ['naver', 'kakao', 'google']) {
-        const existingUser = await getUser(user.id);
-        if (!existingUser) {
-          await insertUser(user); // sign up
+      if (
+        account &&
+        (account?.provider === 'naver' ||
+          account?.provider === 'kakao' ||
+          account?.provider === 'google')
+      ) {
+        try {
+          const existingUser = await getUser(user.id);
+
+          if (!existingUser) {
+            await insertUser(user); // sign up
+          }
+        } catch (error) {
+          console.error(`Failed to sign in with ${account.provider}`, error);
+          return false;
         }
       }
       return true;
@@ -42,7 +53,6 @@ export const authOptions: NextAuthOptions = {
     async session({ token, session }) {
       session.user = {
         id: token.sub ?? '',
-        image: token.picture ?? '',
       };
       return session;
     },
