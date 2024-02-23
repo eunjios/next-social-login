@@ -5,3 +5,9 @@ export interface IUser {
   image: string;
   message?: string;
 }
+
+export type LoginStatus =
+  | 'unauthenticated'
+  | 'authenticated'
+  | 'loggingIn'
+  | 'loggingOut';

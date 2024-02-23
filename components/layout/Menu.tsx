@@ -1,25 +1,20 @@
 import Link from 'next/link';
-import { useState } from 'react';
-import { useRouter } from 'next/router';
-import { signOut, useSession } from 'next-auth/react';
 import Thumbnail from '../ui/Thumbnail';
+import useUserProfile from '@/hooks/useUserProfile';
 import styles from './Menu.module.css';
 
 export default function Menu() {
-  const router = useRouter();
-  const { data: session } = useSession();
-  const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const { loginStatus, user, error, logout } = useUserProfile();
 
-  const btnStyle = `${styles.btn} ${isLoggingOut && styles.loading}`; // 로그아웃 중일 때 스타일 변경
+  const btnStyle = `${styles.btn} ${(loginStatus === 'loggingOut' || loginStatus === 'loggingIn') && styles.loading}`; // 로그아웃 중일 때 스타일 변경
 
-  const logoutHanlder = async () => {
-    setIsLoggingOut(true);
-    await signOut({ redirect: false });
-    await router.replace('/auth');
-    setIsLoggingOut(false);
-  };
+  // TODO: ERROR UI
+  if (error) {
+    // throw new Error('could not fetch user data. (in menu)');
+    return <p>에러</p>;
+  }
 
-  if (!session) {
+  if (loginStatus !== 'authenticated') {
     return (
       <Link className={btnStyle} href="/auth">
         로그인
@@ -29,11 +24,11 @@ export default function Menu() {
 
   return (
     <>
-      <button className={btnStyle} onClick={logoutHanlder}>
+      <button className={btnStyle} onClick={logout}>
         로그아웃
       </button>
       <Link href="/profile">
-        <Thumbnail src={session?.user?.image} size={40} />
+        <Thumbnail src={user?.image} size={40} />
       </Link>
     </>
   );

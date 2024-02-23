@@ -4,13 +4,16 @@ import useUserProfile from '@/hooks/useUserProfile';
 import styles from './User.module.css';
 
 export default function User() {
-  const { user, isLoading, error } = useUserProfile();
+  const { loginStatus, user, error } = useUserProfile();
 
+  // TODO: DATA FETCHING ERROR UI
   if (error) {
-    throw new Error('Could not fetch user data (/)');
+    // throw new Error('Could not fetch user data (/)');
+    return <p>에러</p>;
   }
 
-  if (isLoading) {
+  // TODO: LOADING UI
+  if (loginStatus === 'loggingIn') {
     return null;
   }
 

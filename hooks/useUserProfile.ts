@@ -1,40 +1,50 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { signOut, useSession } from 'next-auth/react';
 import { useQuery } from '@tanstack/react-query';
-import { editUserProfile, getUserProfile } from '@/api/user';
-import { NewProfile } from '@/api/user/types';
+import { getUserProfile } from '@/api/user';
+import { LoginStatus } from '@/types/user';
 
 const useUserProfile = () => {
+  const router = useRouter();
+
+  const { data: session, status } = useSession();
   const { data, isLoading, error } = useQuery({
     queryKey: ['user'],
     queryFn: getUserProfile,
+    enabled: status === 'authenticated', // enabled to authenticated user
   });
+
   const { user } = data ?? {};
-  const [formData, setFormData] = useState<NewProfile>({
-    message: user?.message ?? '',
-    email: user?.email ?? '',
-  });
 
-  const router = useRouter();
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
-  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData((prev) => ({ ...prev, [event.target.id]: event.target.value }));
+  const logout = async () => {
+    setIsLoggingOut(true);
+    await signOut({ redirect: false });
+    await router.replace('/auth');
+    setIsLoggingOut(false);
   };
 
-  const submitHandler = async (event: React.FormEvent) => {
-    event.preventDefault();
-    const newProfile = formData;
-    await editUserProfile(newProfile);
-    router.replace('/');
-  };
+  let loginStatus: LoginStatus = 'unauthenticated';
+  if (isLoading || status === 'loading') {
+    loginStatus = 'loggingIn'; // 로그인 중 (데이터 가져오는 중)
+  } else if (status === 'unauthenticated' && isLoggingOut) {
+    loginStatus = 'loggingOut'; // 로그아웃 중 (세션 삭제 중)
+  } else if (status === 'unauthenticated') {
+    loginStatus = 'unauthenticated';
+  } else {
+    loginStatus = 'authenticated';
+  }
 
   return {
+    loginStatus,
+    session,
+    status,
     user,
     isLoading,
     error,
-    formData,
-    changeHandler,
-    submitHandler,
+    logout,
   };
 };
 
