@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Thumbnail from '../ui/Thumbnail';
 import useUserProfile from '@/hooks/useUserProfile';
 import styles from './User.module.css';
+import UserLoading from './Loading';
 
 export default function User() {
   const { loginStatus, user, error } = useUserProfile();
@@ -12,9 +13,8 @@ export default function User() {
     return <p>에러</p>;
   }
 
-  // TODO: LOADING UI
   if (loginStatus === 'loggingIn') {
-    return null;
+    return <UserLoading />;
   }
 
   return (

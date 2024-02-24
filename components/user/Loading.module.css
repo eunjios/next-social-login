@@ -7,10 +7,23 @@
   padding-top: 40px;
 }
 
+/* 추가 */
+.thumbnail {
+  width: 160px;
+  height: 160px;
+  border-radius: 100%;
+  background: #f4f4f4;
+}
+
 .name {
   font-size: 28px;
   line-height: 48px;
   font-weight: 700;
+  /* 추가 */
+  width: 120px;
+  height: 48px;
+  border-radius: 16px;
+  background: #f4f4f4;
 }
 
 .msg {
@@ -20,6 +33,11 @@
   font-weight: 500;
   color: #666;
   line-height: 24px;
+  /* 추가 */
+  width: 180px;
+  height: 24px;
+  border-radius: 16px;
+  background: #f4f4f4;
 }
 
 .actions {
@@ -37,4 +55,6 @@
   border-radius: 24px;
   font: 500 14px Noto Sans KR;
   cursor: pointer;
+  /* 추가 */
+  width: 88px;
 }
