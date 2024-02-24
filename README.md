@@ -4,7 +4,7 @@
 
 ## About
 
-https://github.com/eunjios/next-social-login/assets/77034159/0bb22298-f380-4336-85ce-db8ddffcba45
+https://github.com/eunjios/next-social-login/assets/77034159/a0f476d5-1282-45cd-b43e-95f78e0706ac
 
 ### 주요 기능
 
