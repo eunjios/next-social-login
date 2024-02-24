@@ -1,4 +1,4 @@
-# Social Login (NextAuth.js + MongoDB)
+# Social Login (NextAuth.js + TanStack Query + MongoDB)
 
 > 네이버, 카카오, 구글 계정으로 소셜 로그인 구현하기
 
@@ -6,18 +6,18 @@
 
 https://github.com/eunjios/next-social-login/assets/77034159/0bb22298-f380-4336-85ce-db8ddffcba45
 
-
 ### 주요 기능
 
-1. 네이버, 카카오, 구글 계정으로 **소셜 로그인**
-2. 처음 방문한 유저는 DB에 저장
-3. 로그인 providers가 제공하지 않는 데이터도 DB에 저장 (상태 메시지, 이메일 정보)
+1. 네이버, 카카오, 구글 계정으로 OAuth 기반 인증
+2. 인증되지 않은 유저는 `/profile` 페이지와 관련 API 접근을 제한하고 redirect
+3. Providers가 제공하는 데이터와 함께 제공하지 않는 데이터도 (상태 메시지, 이메일 정보) DB에 저장
 
 ### 기술
 
 - Next.js (Pages Router)
 - React
 - NextAuth.js
+- TanStack Query (React Query)
 - MongoDB
 - Module CSS
 
