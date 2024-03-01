@@ -10,10 +10,7 @@ export default function Thumbnail({ size, src }: Props) {
   return (
     <div className={styles.thumbnail} style={{ width: size, height: size }}>
       <Image
-        src={
-          src ??
-          'https://w7.pngwing.com/pngs/722/101/png-transparent-computer-icons-user-profile-circle-abstract-miscellaneous-rim-account.png'
-        }
+        src={src ?? 'https://cdn-icons-png.flaticon.com/512/1946/1946429.png'}
         alt="썸네일"
         width={0}
         height={0}
