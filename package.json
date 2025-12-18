@@ -43,7 +43,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-storybook": "^0.8.0",
     "prettier": "^3.2.5",
-    "storybook": "^7.6.17",
+    "storybook": "^7.6.21",
     "typescript": "^5"
   }
 }
